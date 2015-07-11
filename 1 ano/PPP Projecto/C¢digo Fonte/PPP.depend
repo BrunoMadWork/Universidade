@@ -1,0 +1,77 @@
+# depslib dependency file v1.0
+1339981928 source:c:\users\fabio\desktop\ppp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	<conio.h>
+	"Date.h"
+	"Team.h"
+	"Game.h"
+	"LinkedGame.h"
+
+1335731083 source:c:\users\fabio\desktop\ppp\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+
+1335730223 c:\users\fabio\desktop\ppp\linkedlist.h
+	"Team.h"
+
+1339979640 source:c:\users\fabio\desktop\ppp\game.c
+	"Game.h"
+	"Team.h"
+	"Date.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1334862301 c:\users\fabio\desktop\ppp\equipa.h
+
+1339194616 c:\users\fabio\desktop\ppp\game.h
+	"Date.h"
+	"Team.h"
+
+1339980642 c:\users\fabio\desktop\ppp\date.h
+
+1339981464 source:c:\users\fabio\desktop\ppp\team.c
+	"Team.h"
+	"LinkedGame.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1339981464 c:\users\fabio\desktop\ppp\team.h
+
+1339980642 source:c:\users\fabio\desktop\ppp\date.c
+	<stdio.h>
+	<stdlib.h>
+	"Date.h"
+
+1336526205 source:c:\users\fabio\desktop\ppp\linkedteam.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedTeam.h"
+
+1336526205 c:\users\fabio\desktop\ppp\linkedteam.h
+	"Team.h"
+
+1339980321 source:c:\users\fabio\desktop\ppp\linkedgame.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedGame.h"
+
+1339972433 c:\users\fabio\desktop\ppp\linkedgame.h
+	"Game.h"
+
+1335977066 source:c:\users\fabio\desktop\ppp\menu.c
+	<stdio.h>
+
+1336528617 source:c:\users\fabio\desktop\ppp\classificationlinkedteam.c
+	<stdio.h>
+	<stdlib.h>
+	"ClassificationLinkedTeam.h"
+
+1336527914 c:\users\fabio\desktop\ppp\classificationlinkedteam.h
+	"Team.h"
+

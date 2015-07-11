@@ -1,0 +1,624 @@
+html, body
+{
+	height:100%;
+}
+
+body.page_login {
+    background-color: #DDDDDD;
+}
+
+body.page_register {
+    background-color: rgb(147,145,145);
+}
+
+div.adminlabel
+{
+	font-size: 50px;
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+	margin-left: 150px;
+	margin-top: 15px;
+	float: left;
+	color: #DCDCDC;
+}
+
+div.userlist
+{
+	font-size: 17px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+div.usertable
+{
+	margin-right: 25px;
+}
+
+table.usertable
+{
+	width:100%;
+}
+
+table.usertable th
+{
+	background-color: grey;
+}
+
+table.usertable td#iconn
+{
+	text-align: center;
+}
+
+#icon
+{
+	width: 20px;
+	height: 20px;
+}
+
+div.superior
+{
+   width: 100%;
+   padding: 0;
+   top: 0;
+   left: 0;
+   height: 50px;
+   background-color: rgb(182, 0, 2);
+   text-align: center;
+   font-weight: bold;
+}
+
+div.meio
+{
+   width: 100%;
+   padding: 0;
+   top: 0;
+   left: 0;
+   height: 90px;
+   background-color: rgb(202, 0, 2);
+   text-align: center;
+   font-weight: bold;
+}
+
+div.content_meio
+{
+	height: 85px;
+	width: 900px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+#logo
+{
+	float: left;
+	height: 100px;
+	margin-top: -5px;
+}
+
+div.username
+{
+	float: right;
+	position: static;
+	color: white; 
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+div.logout
+{
+	float: right;
+	color: black;
+	margin-left: 10px;
+}
+
+div.search
+{
+	clear: right;
+	position: static;
+	float: right;
+}
+
+div.advanced_search
+{
+	clear: right;
+	position: static;
+	float: right;
+	margin-top: -13px;
+	font-size: 13px;
+	color: white;
+}
+
+#text_search
+{
+	width: 250px;
+}	
+
+#text_advsearch
+{
+	width: 500px;
+}
+
+#select
+{
+	font-size: 13px;
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+	margin-right: 2px;
+}
+
+#date
+{
+	font-size: 13px;
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+	margin-right: 2px;
+	margin-left: 5px;
+}
+
+div.menu
+{
+   width: 100%;
+   padding: 0;
+   top: 0;
+   left: 0;
+   height: 35px;
+   background-color: rgb(182, 0, 2);
+   text-align: center;
+   font-weight: bold;
+}
+
+div.content_menu
+{
+	height: 30px;
+	width: 900px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+ul#zonas
+{
+	position: absolute;
+	margin-left: -40px;
+	margin-top: 4px;
+}
+
+ul#zonas li
+{
+	float: left;
+	list-style-type: none;
+	padding: 5px 20px 5px 20px;
+	font-weight: bold;
+	font-size: 17px;
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+	font-size: 13px;
+}
+
+ul#zonas li:hover
+{
+	background-color: rgb(159,0,2);
+}
+
+div.cinzento
+{
+   min-height: 100%;
+   margin: 0 auto;
+   padding: 0;
+   top: 0;
+   left: 0;
+   background-color: #FF4433;
+   text-align: center;
+   font-weight: bold;
+   padding: 4px 0px 0px 0px;
+   background-color: rgb(243,245,245);
+}
+
+#back
+{
+	width:80px;
+	height: 20px;
+	margin-bottom: 20px;
+}
+
+div.noticias
+{
+	height: 100%;
+	width: 900px;
+	margin-left: auto;
+    margin-right: auto;
+	background-color: white;
+}
+
+#latest
+{
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+	font-size: 23px;
+}
+
+#searchresult
+{
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+	font-size: 20px;
+}
+
+div.label
+{
+	margin-bottom: 40px;
+}
+
+div.latest
+{
+	text-align: left;
+	padding: 15px 0px 0px 25px;
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+}
+
+div.data
+{
+	font-size: 11px;
+	color: gray;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+div.photo
+{
+	margin-left: 170px;
+	margin-bottom: 20px;
+}
+
+#photo
+{
+	width:500px;
+	height:260px;
+}
+
+div.highlights
+{
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: gray;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top-color: gray;
+	width: 850px;
+	font-weight: bold;
+	color: rgb(182, 0, 2);
+	margin-bottom: 30px;
+	font-size: 13px;
+}
+
+div.high
+{
+	color: gray;
+}
+
+div.textnew
+{
+	font-weight: normal;
+	font-size: 13px;
+	padding: 0px 20px 0px 0px;
+	text-align: justify;
+	margin-bottom: 20px;
+}
+
+div.login_errado {
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   top: 0;
+   left: 0;
+   height: 25px;
+   background-color: #FF4433;
+   text-align: center;
+   font-weight: bold;
+   padding: 4px 0px 0px 0px;
+}
+
+div.updatesucesso {
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   top: 0;
+   left: 0;
+   height: 25px;
+   background-color: #66dd00;
+   text-align: center;
+   font-weight: bold;
+   padding: 4px 0px 0px 0px;
+}
+
+div.central
+{
+	width: 600px;
+	height: 200px;
+	/*border-style: solid;
+	border-width: 1px;*/
+	position:absolute;
+    left:50%;
+    top:50%;
+    margin:-120px 0 0px -280px;
+	background-image: url("images/fundo-login.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+div.login
+{
+	width: 300px;
+	padding: 40px 0px 0px 20px;
+	float: left;
+}
+
+div.separador
+{
+	float: left;
+	border-left-style: solid;
+	border-left-width: 2px;
+	height: 140px;
+	width: 5px;
+	margin-left: 25px;
+	margin-top: 20px;
+}
+
+div.register
+{
+	width: 200px;
+	padding: 40px 0px 0px 10px;
+	float: left;
+}
+
+div.text
+{
+	margin-left: 25px;
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+div.registo
+{
+	margin-left: 45px;
+	margin-top: 10px;
+}
+
+#numsel
+{
+	color: rgb(182, 0, 2);
+}
+
+table.login td.label
+{
+	width: 100px;
+	padding: 5px;
+	font-weight: bold;
+}
+
+table.login td.forgot
+{
+	font-size: 12px;
+	text-align: right;
+}
+
+table.login td.botao
+{
+	padding: 10px 0px 0px 0px;
+}
+
+table.user td#label
+{
+	width: 150px;
+}
+
+input#useredit
+{
+	width: 300px;
+}
+
+div.botaouser
+{
+	margin-top: 20px;
+	margin-left: 390px;
+}
+
+div.blank
+{
+	font-size: 12px;
+	margin-top: 5px;
+	margin-left: 210px;
+}
+
+div.searchauthor
+{
+	margin-top: 30px;
+	border-top-style: solid;
+	border-top-width: 1px;
+	width: 850px;
+	padding: 20px 0px 0px 0px;
+}
+
+#data
+{
+	width: 200px;
+}
+
+#data2
+{
+	width: 150px;
+}
+
+#data3
+{
+	width: 250px;
+}
+
+#submit
+{
+	float: right;
+}
+
+a#geral:link {
+    color: black;
+	text-decoration: underline;
+}
+
+/* visited link */
+a#geral:visited {
+    color: black;
+	text-decoration: underline;
+}
+
+/* mouse over link */
+a#geral:hover {
+    color: black;
+	text-decoration: underline;
+}
+
+/* selected link */
+a#geral:active {
+    color: black;
+	text-decoration: underline;
+}
+
+a#search:link {
+    color: white;
+	text-decoration: none;
+}
+
+/* visited link */
+a#search:visited {
+    color: white;
+	text-decoration: none;
+}
+
+/* mouse over link */
+a#search:hover {
+    color: white;
+	text-decoration: none;
+}
+
+/* selected link */
+a#search:active {
+    color: white;
+	text-decoration: none;
+}
+
+a#logout:link {
+    color: black;
+	text-decoration: none;
+}
+
+/* visited link */
+a#logout:visited {
+    color: black;
+	text-decoration: none;
+}
+
+/* mouse over link */
+a#logout:hover {
+    color: black;
+	text-decoration: none;
+}
+
+/* selected link */
+a#logout:active {
+    color: black;
+	text-decoration: none;
+}
+
+a#news:link {
+    color: black;
+	text-decoration: none;
+}
+
+/* visited link */
+a#news:visited {
+    color: black;
+	text-decoration: none;
+}
+
+/* mouse over link */
+a#news:hover {
+    color: rgb(182, 0, 2);
+	text-decoration: none;
+}
+
+/* selected link */
+a#news:active {
+    color: black;
+	text-decoration: none;
+}
+
+a#menu:link {
+    color: white;
+	text-decoration: none;
+}
+
+/* visited link */
+a#menu:visited {
+    color: white;
+	text-decoration: none;
+}
+
+/* mouse over link */
+a#menu:hover {
+    color: white;
+	text-decoration: none;
+	background-color: rgb(159,0,2);
+}
+
+/* selected link */
+a#menu:active {
+    color: white;
+	text-decoration: none;
+}
+
+a#menu2:link {
+    color: black;
+	text-decoration: none;
+}
+
+/* visited link */
+a#menu2:visited {
+    color: black;
+	text-decoration: none;
+}
+
+/* mouse over link */
+a#menu2:hover {
+    color: black;
+	text-decoration: none;
+}
+
+/* selected link */
+a#menu2:active {
+    color: black;
+	text-decoration: none;
+}
+
+div.register_title
+{
+	background-color: #DDDDDD;
+	height: 25px;
+	width: 350px;
+	font-weight: bold;
+	font-size: 17px;
+	padding: 3px 0px 0px 10px;
+	margin-top: 15px;
+}
+
+div.info
+{
+	margin-left: 5px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#cancelar
+{
+	margin-right: 5px;
+	float: right;
+}
+
+div.estado
+{
+	padding: 10px 0px 0px 10px;
+	font-weight: bold;
+}
+
+

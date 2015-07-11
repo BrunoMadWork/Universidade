@@ -1,0 +1,16 @@
+Beira Mar/Aveiro/0
+Academica de Coimbra/Coimbra/0
+Benfica/Lisboa/0
+Feirense/Santa Maria da Feira/0
+Sporting/Lisboa/0
+Vitoria de Setubal/Setubal/0
+Porto/Porto/0
+Gil Vicente/Barcelos/0
+Pacos de Ferreira/Pacos de Ferreira/0
+Olhanense/Olhao/0
+Sporting de Braga/Braga/0
+Nacional da Madeira/Funchal/0
+Maritimo/Funchal/0
+Vitoria de Guimaraes/Guimaraes/0
+Rio Ave/Vila do Conde/0
+Uniao de Leira/Leiria/0

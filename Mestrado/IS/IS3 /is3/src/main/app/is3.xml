@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:cluster="http://www.mulesoft.org/schema/mule/cluster" xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns:quartz="http://www.mulesoft.org/schema/mule/quartz" xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:twitter="http://www.mulesoft.org/schema/mule/twitter" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:jdbc-ee="http://www.mulesoft.org/schema/mule/ee/jdbc" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/ee/jdbc http://www.mulesoft.org/schema/mule/ee/jdbc/current/mule-jdbc-ee.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/twitter http://www.mulesoft.org/schema/mule/twitter/current/mule-twitter.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/current/mule-smtp.xsd
+http://www.mulesoft.org/schema/mule/quartz http://www.mulesoft.org/schema/mule/quartz/current/mule-quartz.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd">
+    <db:generic-config name="Generic_Database_Configuration" url="jdbc:postgresql://localhost:5432/postgres?user=postgres&amp;password=bjbm8701" driverClassName="org.postgresql.Driver" doc:name="Generic Database Configuration"/>
+    <jdbc-ee:postgresql-data-source name="PostgreSQL_Data_Source" user="postgres" password="bjbm8701" url="jdbc:postgresql://localhost:5432/postgres" transactionIsolation="UNSPECIFIED" doc:name="PostgreSQL Data Source"/>
+    <smtp:gmail-connector name="Gmail" contentType="text/plain" fromAddress="brunomadwork@gmail.com" replyToAddresses="brunomadwork@gmail.com" subject="Your digest" validateConnections="true" doc:name="Gmail"/>
+    <twitter:config name="Twitter" accessKey="2887200077-x2hwqm5A8aJN9CcVdjPD4uXvGFw9oFr8kS1volx" accessSecret="bqtBKvX8evODhwKbidUH28D1V89XXkPDTxDtpsxDkLaPZ" consumerKey="fmT8swXO4pcCyW5iC5sDXGN0e" consumerSecret="MapF33gd1Xd0rHfIb7LltwSgaHeEuoF86VO3plkkxPgxjRyjhX" doc:name="Twitter"/>
+    <quartz:connector name="myQuartzConnector" validateConnections="true" doc:name="Quartz"/>
+    <catch-exception-strategy name="Strategy">
+        <set-payload value="#[exception]" doc:name="Set Payload"/>
+        <file:outbound-endpoint path="/Users/brunomadureira/AnypointStudio/workspace/is3/Log" outputPattern="errors.txt" responseTimeout="10000" doc:name="File"/>
+    </catch-exception-strategy>
+    <configuration defaultExceptionStrategy-ref="Strategy" doc:name="Configuration"/>
+    <file:connector name="File" writeToDirectory="/Users/brunomadureira/AnypointStudio/workspace/is3/Log" autoDelete="true" streaming="true" validateConnections="true" doc:name="File"/>
+    <flow name="SoapUser" doc:name="SoapUser">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="show" doc:name="HTTP"/>
+        <cxf:jaxws-service serviceClass="soaptoflow.Tranporter" doc:name="CXF"/>
+        <component class="soaptoflow.TransporterImp" doc:name="Java"/>
+        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[select insertnewusers(#[xpath('//eMail').text],#[xpath('//favoriteRegion').text],#[xpath('//digest').text],'true',#[xpath('//delete').text]);]]></db:parameterized-query>
+        </db:select>
+        <set-payload value="&quot;dfghjkghj&quot;" doc:name="Set Payload"/>
+    </flow>
+    <flow name="Browser" doc:name="Browser">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="Static" doc:name="HTTP"/>
+        <logger level="INFO" doc:name="Logger"/>
+        <choice doc:name="Choice">
+            <when expression="#[groovy:return message.getInboundProperty('mail')==null]">
+                <http:static-resource-handler resourceBase="/Users/brunomadureira/AnypointStudio/workspace/is3/Html" defaultFile="Page.html" doc:name="HTTP Static Resource Handler"/>
+            </when>
+            <otherwise>
+                <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+                    <db:parameterized-query><![CDATA[select insertnewusers(#[groovy:return message.getInboundProperty('mail');],#[groovy:return message.getInboundProperty('region');],#[groovy:return message.getInboundProperty('digest');],'false',
+#[groovy:return message.getInboundProperty('delete');],#[groovy:return message.getInboundProperty('mail2');])]]></db:parameterized-query>
+                </db:select>
+            </otherwise>
+        </choice>
+    </flow>
+    <flow name="Twiiter" doc:name="Twiiter">
+        <custom-transformer class="soaptoflow.LastNews" doc:name="Java"/>
+        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+        <foreach doc:name="For Each" >
+            <twitter:update-status config-ref="Twitter" status="1231241asdasag1 #[payload.getTitle()] #[payload.getPhotos()] fa" accessKey="2887200077-x2hwqm5A8aJN9CcVdjPD4uXvGFw9oFr8kS1volx" accessSecret="bqtBKvX8evODhwKbidUH28D1V89XXkPDTxDtpsxDkLaPZ" doc:name="Twitter"/>
+            <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+                <db:parameterized-query><![CDATA[select counttwiter();]]></db:parameterized-query>
+            </db:select>
+        </foreach>
+    </flow>
+    <flow name="Mail" doc:name="Mail">
+        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[Select * from users;]]></db:parameterized-query>
+        </db:select>
+        <set-session-variable variableName="Mails" value="#[payload]" doc:name="Session Variable"/>
+        <foreach collection="#[sessionVars['Mails']]" doc:name="For Each" counterVariableName="i">
+            <set-variable variableName="toSend" value="#[payload]" doc:name="Variable"/>
+            <foreach collection="#[sessionVars['News']]" counterVariableName="j" doc:name="For Each">
+                <choice doc:name="Choice">
+                    <when expression="#[payload.getRegion()==toSend.favouriteregion &amp;&amp; toSend.digest==false]">
+                        <set-payload value="#[payload.getTitle()]" doc:name="Set Payload"/>
+                        <smtp:outbound-endpoint host="smtp.gmail.com" port="587" user="brunomadwork%40gmail.com" password="bjbm8701" connector-ref="Gmail" to="#[toSend.email]" from="brunomadwork@gmail.com" subject="Your non digest" responseTimeout="10000" doc:name="SMTP"/>
+                        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+                            <db:parameterized-query><![CDATA[select countnondigest()]]></db:parameterized-query>
+                        </db:select>
+                    </when>
+                    <otherwise>
+                        <logger message="nop" level="INFO" doc:name="Logger"/>
+                    </otherwise>
+                </choice>
+            </foreach>
+        </foreach>
+    </flow>
+    <flow name="Database" doc:name="Database">
+        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+        <foreach doc:name="For Each">
+            <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+                <db:parameterized-query><![CDATA[select insertnewnews(#[payload.title].text,#[payload.url].text,#[payload.highlits].text,#[payload.date].text,#[payload.author].text,#[payload.text].text,#[payload.photos].text,#[payload.video].text,#[payload.region].text )]]></db:parameterized-query>
+            </db:select>
+            <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+                <db:parameterized-query><![CDATA[Select CountNews()]]></db:parameterized-query>
+            </db:select>
+        </foreach>
+    </flow>
+    <flow name="FromFile" doc:name="FromFile">
+        <file:inbound-endpoint path="/Users/brunomadureira/AnypointStudio/workspace/is3/news" responseTimeout="10000" doc:name="File"/>
+        <file:file-to-byte-array-transformer doc:name="File to Byte Array"/>
+        <custom-transformer class="file.XmlToDatabase" doc:name="Java"  />
+        <flow-ref name="main" doc:name="Flow Reference"/>
+    </flow>
+    <flow name="main" doc:name="main">
+        <set-session-variable variableName="News" value="#[payload]" doc:name="Session Variable"/>
+        <foreach doc:name="For Each">
+            <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+                <db:parameterized-query><![CDATA[Select countregion(#[payload.getRegion()])]]></db:parameterized-query>
+            </db:select>
+        </foreach>
+        <logger message="aaaa #[sessionVars['News']]" level="INFO" doc:name="Logger"/>
+        <scatter-gather doc:name="Scatter-Gather">
+            <flow-ref name="Database" doc:name="Flow Reference"/>
+            <flow-ref name="Mail" doc:name="Flow Reference"/>
+            <flow-ref name="Twiiter" doc:name="Flow Reference"/>
+        </scatter-gather>
+        <set-payload value="asdasdasd" doc:name="Set Payload"/>
+    </flow>
+    <flow name="NewsSoap" doc:name="NewsSoap">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="News" doc:name="HTTP"/>
+        <cxf:jaxws-service serviceClass="soaptoflow.NewsSoup" doc:name="CXF"/>
+        <component class="soaptoflow.NewsSoupImp" doc:name="Java"/>
+        <custom-transformer class="file.XmlToDatabase" doc:name="Java"/>
+        <set-session-variable variableName="News" value="#[payload]" doc:name="Session Variable"/>
+        <flow-ref name="main" doc:name="Flow Reference"/>
+    </flow>
+    <flow name="Event" doc:name="Event">
+        <quartz:inbound-endpoint jobName="Schedule" repeatInterval="600000" connector-ref="myQuartzConnector" responseTimeout="10000" doc:name="Quartz">
+            <quartz:event-generator-job/>
+        </quartz:inbound-endpoint>
+        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[Select * from news]]></db:parameterized-query>
+        </db:select>
+        <set-session-variable variableName="NewsVariable" value="#[payload]" doc:name="Session Variable"/>
+        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[select * from users]]></db:parameterized-query>
+        </db:select>
+        <foreach counterVariableName="i" doc:name="For Each">
+            <set-variable variableName="aEnviar" value="#[payload]" doc:name="Variable"/>
+            <foreach collection="#[sessionVars['NewsVariable']]" counterVariableName="j" doc:name="For Each">
+                <choice doc:name="Choice">
+                    <when expression="#[payload.region==aEnviar.favouriteregion &amp;&amp; aEnviar.digest==true]">
+                        <set-payload value="#[payload.title]" doc:name="Set Payload"/>
+                        <smtp:outbound-endpoint host="smtp.gmail.com" port="587" user="brunomadwork%40gmail.com" password="bjbm8701" connector-ref="Gmail" to="#[aEnviar.email]" from="brunomadwork@gmail.com" subject="Your digest" responseTimeout="10000" doc:name="SMTP"/>
+                        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+                            <db:parameterized-query><![CDATA[select countdigest()]]></db:parameterized-query>
+                        </db:select>
+                    </when>
+                    <otherwise>
+                        <logger message="Nop" level="INFO" doc:name="Logger"/>
+                    </otherwise>
+                </choice>
+            </foreach>
+        </foreach>
+    </flow>
+    <flow name="is3Flow1" doc:name="is3Flow1">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="Statistics" doc:name="HTTP"/>
+        <cxf:jaxws-service serviceClass="soaptoflow.Statistics" doc:name="CXF"/>
+        <db:select config-ref="Generic_Database_Configuration" maxRows="1" doc:name="Database">
+            <db:parameterized-query><![CDATA[select  * from numbernews]]></db:parameterized-query>
+        </db:select>
+        <logger message="#[payload.get(0).numero.toString()]" level="INFO" doc:name="Logger"/>
+        <set-variable variableName="ag1" value="#[payload.get(0).numero.toString()]" doc:name="Variable"/>
+        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[select * from numbertwiter]]></db:parameterized-query>
+        </db:select>
+        <set-variable variableName="ag4" value="#[payload.get(0).number.toString()]" doc:name="Variable"/>
+        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[select * from numberdigest]]></db:parameterized-query>
+        </db:select>
+        <set-variable variableName="ag3" value="#[payload.get(0).number.toString()]" doc:name="Variable"/>
+        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[select * from numbernondigest]]></db:parameterized-query>
+        </db:select>
+        <set-variable variableName="ag7" value="#[payload.get(0).number.toString()]" doc:name="Variable"/>
+        <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[select number from numbersregions]]></db:parameterized-query>
+        </db:select>
+        <set-variable variableName="reg0" value="#[payload.get(0).number.toString()]" doc:name="Variable"/>
+        <set-variable variableName="reg1" value="#[payload.get(1).number.toString()]" doc:name="Variable"/>
+        <set-variable variableName="reg2" value="#[payload.get(2).number.toString()]" doc:name="Variable"/>
+        <set-variable variableName="reg3" value="#[payload.get(3).number.toString()]" doc:name="Variable"/>
+        <set-variable variableName="reg4" value="#[payload.get(4).number.toString()]" doc:name="Variable"/>
+        <set-variable variableName="reg5" value="#[payload.get(5).number.toString()]" doc:name="Variable"/>
+        <set-variable variableName="reg6" value="#[payload.get(6).number.toString()]" doc:name="Variable"/>
+        <set-payload value="Total news: #[ag1] abaixo Total Digest: #[ag3] abaixo Total non Digest:#[ag7] abaixo Total Twiiter: #[ag4] abaixo Total World: #[reg0]  abaixo Total Us: #[reg1]  abaixo Total Africa: #[reg2] abaixo Total Asia: #[reg3] abaixo Total Europe: #[reg4] abaixo Total Latin America: #[reg5] abaixo Total Middle-East: #[reg6]" doc:name="Set Payload"/>
+    </flow>
+</mule>

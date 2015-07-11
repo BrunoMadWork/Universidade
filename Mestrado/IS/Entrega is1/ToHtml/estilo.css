@@ -1,0 +1,147 @@
+div.title
+{
+	height: 150px;
+	width: 1000px;
+	/*border-style: solid;
+	border-width: 1px;*/
+	margin: 0 auto;
+	position: relative;
+}
+
+div.news
+{
+	font-size: 60px;
+	width:200;
+	float: left;
+	margin-left: 210px;
+	font-weight: bold;
+	font-family: "Cooper";
+}
+
+div.zonas
+{
+	width:580px;
+	height: 70px;
+	float: left;
+	margin-left: 10px;
+}
+
+ul#zonas_cima li 
+{
+	display: inline;
+	list-style-type: none;
+	padding-right: 50px;
+	font-weight: bold;
+	margin-left: 50px;
+	font-size: 17px;
+}
+
+ul#zonas_baixo li 
+{
+	display: inline;
+	list-style-type: none;
+	padding-right: 50px;
+	font-weight: bold;
+	margin-left: 10px;
+	font-size: 17px;
+}
+
+img#cnnlogo
+{
+	height: 150px;
+	width: 400px;
+	float: left;
+}
+
+div.conteudo
+{
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+}
+
+div.titulo_zona
+{
+	width: 990px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	font-size: 40px;
+	font-weight: bold;
+	margin-top: 25px;
+	margin-bottom: 20px;
+}
+
+div.noticia
+{
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+div.titulo
+{
+	font-size:20px;
+	font-weight: bold;
+}
+
+div.data
+{
+	font-size: 11px;
+	color: gray;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+div.photo
+{
+	margin-top: 20px;
+	margin-left: 180px;
+	margin-bottom: 20px;
+}
+
+div.texto
+{
+	text-align: justify;
+    text-justify: inter-word;
+}
+
+a:link {
+    color: black;
+	text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: black;
+	text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: black;
+	text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: black;
+	text-decoration: none;
+}
+
+.scrollToTop{
+	width:100px; 
+	height:130px;
+	padding:10px; 
+	text-align:center; 
+	background: whiteSmoke;
+	font-weight: bold;
+	color: #444;
+	text-decoration: none;
+	position:fixed;
+	top:75px;
+	right:40px;
+	display:none;
+	background: url('images/seta.png') no-repeat 0px 20px;
+}
+.scrollToTop:hover{
+	text-decoration:none;
+}

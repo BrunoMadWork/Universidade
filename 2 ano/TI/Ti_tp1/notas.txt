@@ -1,0 +1,25 @@
+Alterações necessárias a fazer no código para que o programa funcione em Windows 7
+
+Linha 166: fileSize = [fileInfo.bytes];
+
+Não percebi o código da Entropia P(P~=0) que isso?
+
+Respostas do exercício 3,4 e 5:
+
+Aqui usamos 4 algoritmos diferentes em nossos arquivos, um que mostra em um histograma a dispersão dos dados,
+um que calcula a entropia, um que calcula a entropia conjunta, e outro que contém a rotina hufflen.
+
+Analisando os dados chegamos a conclusão que a entropia de um arquivo será tanto maior quanto maior for
+a dispersão dos seus dados.
+O valor da entropia conjunta é sempre menor ou igual que o valor da entropia por cada símbolo, então chegámos a conclusão 
+que é sempre benéfico codificar-mos os nossos dados usando agrupamentos de símbolos.
+Os códigos de huffman conseguem codificar com um valor bastante próximo do valor da entropia por símbolos
+individuais, sendo uma boa aproximação da entropia para codificar uma fonte.
+
+É possível comprimir os nossos dados de forma não destrutiva pois não estamos a descartar dados, apenas estamos
+a apresentar cada símbolo de forma diferente.
+
+Exercício 6
+
+Os que tem maior semelhança audível tem maior informação mútua, logo a variação da informação mútua no caso do target1 e target2
+é perceptível ao olharmos o  gráfico de cada um

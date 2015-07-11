@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<regions>
+	<region area="World">
+			<news id="0">
+				<title>das ds</title>
+				<url>http:adasdasdasa</url>
+				<highlits> saasa</highlits>
+				<date>
+					<day>23</day>
+					<month>janeiro"</month>
+					<year>1933</year>
+					<time>3123</time>
+				</date>
+				<author>as</author>
+				<text> dd</text>
+				<photos>ff</photos>
+				<video>dd</video>
+
+			</news>
+
+	</region>
+	<region area="Africa">
+			<news id="23">
+				<title>das dasds</title>
+				<url>http:aasdadasdasdasa</url>
+				<highlits> asdsaasa</highlits>
+				<date>
+					<day>23</day>
+					<month>jaasdneiro"</month>
+					<year>1933</year>
+					<time>3113</time>
+
+				</date>
+				<author>as</author>
+				<text> dasdd</text>
+				<photos>fsdf</photos>
+				<video>ddasd</video>
+
+			</news>
+			<news id="24">
+				<title>das dasds</title>
+				<url>http:aasdadasdasdasa</url>
+				<highlits> asdsaasa</highlits>
+				<date>
+					<day>2333</day>
+					<month>jaasdneiro"</month>
+					<year>193</year>
+					<time>3123</time>
+
+				</date>
+				<author>as</author>
+				<text> dasdd</text>
+				<photos>fsdf</photos>
+				<video>ddasd</video>
+
+			</news>
+
+	</region>
+	
+</regions>

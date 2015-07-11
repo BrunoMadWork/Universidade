@@ -1,0 +1,3 @@
+Para Compilar:
+
+gcc main2.c -o main -pthread -lm

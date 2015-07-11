@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="regions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="region"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="region">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="news"/>
+      </xs:sequence>
+      <xs:attribute name="area" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="news">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="title"/>
+        <xs:element ref="url"/>
+        <xs:element ref="highlits"/>
+        <xs:element ref="date"/>
+        <xs:element ref="author"/>
+        <xs:element ref="text"/>
+        <xs:element ref="photos"/>
+        <xs:element ref="video"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="url" type="xs:NMTOKEN"/>
+  <xs:element name="highlits" type="xs:NCName"/>
+  <xs:element name="date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="day"/>
+        <xs:element ref="month"/>
+        <xs:element ref="year"/>
+        <xs:element ref="time"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="day">
+  <xs:simpleType>
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="31"/>
+    </xs:restriction>
+  </xs:simpleType>
+  </xs:element>
+  <xs:element name="month" type="xs:string"/>
+  <xs:element name="year">
+  <xs:simpleType>
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="31"/>
+    </xs:restriction>
+  </xs:simpleType>
+  </xs:element>
+ <xs:element name="time">
+  <xs:simpleType>
+    <xs:restriction base="xs:integer">
+      <xs:maxInclusive value="2400"/>
+    </xs:restriction>
+  </xs:simpleType>
+  </xs:element>
+  <xs:element name="author" type="xs:NCName"/>
+  <xs:element name="text" type="xs:NCName"/>
+  <xs:element name="photos" type="xs:NCName"/>
+  <xs:element name="video" type="xs:NCName"/>
+</xs:schema>
